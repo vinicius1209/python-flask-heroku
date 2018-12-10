@@ -14,7 +14,6 @@ db.init_app(dashboard)
 migrate.init_app(dashboard, db)
 
 from app import routes
-from app import models
 
 if __name__ == "__main__":
     dashboard.run(host='0.0.0.0', debug=False, port=5000)
