@@ -1,9 +1,11 @@
-from app import dashboard, db
-from flask import flash, redirect, render_template, request, url_for
+from app import db
+from flask import flash, redirect, render_template, request, url_for, Blueprint
 from app.models import Task
 
-@dashboard.route('/', methods=['GET', 'POST'])
-@dashboard.route('/dashboard', methods=['GET', 'POST'])
+bp = Blueprint('app', __name__)
+
+@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/dashboard', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         name = request.form['name']
@@ -17,7 +19,7 @@ def index():
     return render_template('dashboard.html', title='Dashboard', tasks=tasks)
 
 
-@dashboard.route('/dashboard/<int:id>/delete', methods=['POST'])
+@bp.route('/dashboard/<int:id>/delete', methods=['POST'])
 def delete(id):
     task = Task.query.get(id)
     if task != None:
