@@ -27,4 +27,3 @@ def delete(id):
         db.session.delete(task)
         db.session.commit()
     return redirect(url_for('task_list.index'))
-
