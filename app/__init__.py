@@ -13,6 +13,7 @@ dashboard.config.from_object(Config)
 db.init_app(dashboard)
 migrate.init_app(dashboard, db)
 
+from app import models
 from app import routes
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ from app.models import Task
 
 
 @dashboard.route('/dashboard', methods=['GET', 'POST'])
-def task_list():
+def index():
     if request.method == 'POST':
         name = request.form['name']
         if not name:
@@ -18,9 +18,9 @@ def task_list():
 
 
 @dashboard.route('/dashboard/<int:id>/delete', methods=['POST'])
-def delete():
+def delete(id):
     task = Task.query.get(id)
     if task != None:
         db.session.delete(task)
         db.session.commit()
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('index'))
