@@ -2,7 +2,7 @@ from app import dashboard, db
 from flask import flash, redirect, render_template, request, url_for
 from app.models import Task
 
-
+@dashboard.route('/', methods=['GET', 'POST'])
 @dashboard.route('/dashboard', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
