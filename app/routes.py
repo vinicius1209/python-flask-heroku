@@ -1,11 +1,10 @@
-from flask import flash, redirect, render_template, request, url_for
 from app import dashboard, db
+from flask import flash, redirect, render_template, request, url_for
 from app.models import Task
 
 
-@dashboard.route('/', methods=['GET', 'POST'])
 @dashboard.route('/dashboard', methods=['GET', 'POST'])
-def dashboard():
+def task_list():
     if request.method == 'POST':
         name = request.form['name']
         if not name:
@@ -17,6 +16,7 @@ def dashboard():
     tasks = Task.query.all()
     return render_template('dashboard.html', title='Dashboard', tasks=tasks)
 
+
 @dashboard.route('/dashboard/<int:id>/delete', methods=['POST'])
 def delete():
     task = Task.query.get(id)
@@ -24,4 +24,3 @@ def delete():
         db.session.delete(task)
         db.session.commit()
     return redirect(url_for('dashboard'))
-
