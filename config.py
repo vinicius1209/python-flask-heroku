@@ -1,5 +1,5 @@
 import os
-from app import dashboard
+from task_list import dashboard
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'cout << "Vinicius" << endl;'
